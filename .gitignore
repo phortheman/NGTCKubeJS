@@ -1,0 +1,4 @@
+kubejs/exported/*
+kubejs/probe/*
+kubejs/assets/kubejs/lang/schema.json
+kubejs/jsconfig.json
