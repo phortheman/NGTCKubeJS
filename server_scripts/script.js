@@ -43,24 +43,10 @@ onEvent('recipes', event => {
 	event.remove({output: 'reliquary:glowing_bread'})
 	event.remove({output: 'reliquary:destruction_catalyst'})
 
-	let oreCrushingOverride = ( recipeID, output, input ) => {
-		event.remove({ id: 'create:crushing/' + recipeID } )
-		event.recipes.createCrushing( [
-			output,
-			Item.of( output ).withChance( 0.3 ),
-			Item.of( 'create:experience_nugget') .withChance( 0.75 )
-		], input ).id( 'nothinggood:crushing/ores/' + recipeID )
-	}
-
-	oreCrushingOverride( 'raw_iron', 'create:crushed_iron_ore', 'minecraft:raw_iron' )
-	oreCrushingOverride( 'raw_copper', 'create:crushed_copper_ore', 'minecraft:raw_copper' )
-	oreCrushingOverride( 'raw_gold', 'create:crushed_gold_ore', 'minecraft:raw_gold' )
-	oreCrushingOverride( 'raw_zinc', 'create:crushed_zinc_ore', 'create:raw_zinc' )
-
 	event.recipes.createCrushing( [
-		'3x minecraft:cobblestone',
+		'1x minecraft:cobblestone',
 		Item.of('2x minecraft:cobblestone').withChance(0.5) ],
-		'minecraft:cobbled_deepslate' ).processingTime(100)
+		'minecraft:cobbled_deepslate' ).processingTime(300).id( 'nothinggood:deepslate_cobble_to_cobblestone')
 
 	event.shaped( 'minecraft:saddle', [
 		'LLL',
@@ -69,7 +55,7 @@ onEvent('recipes', event => {
 		], {
 		L: 'minecraft:leather',
 		I: 'minecraft:iron_ingot'
-	} )
+	} ).id( 'nothinggood:saddle')
 })
 
 onEvent('item.tags', event => {
