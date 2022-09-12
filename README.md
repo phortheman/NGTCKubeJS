@@ -20,11 +20,27 @@ There are two recycle.js files in the server_scripts folder. They are categories
 This is just the default catch all script for server scripts. Currently it holds the following
 - Removed op [Reliquary Reincarnations](https://www.curseforge.com/minecraft/mc-mods/reliquary-v1-3) items from being craftable
 - Crafting recipe for saddles
-- Override the ore crushing to include a 30% chance to get a bonus crushed ore
-- Added crushing recipe for deepslate cobble to turn into 3 guareneteed cobblestone and a chance for 2 extra cobblestone
+- Added crushing recipe for deepslate cobble to turn into 1 guareneteed cobblestone and a chance for 2 extra cobblestone
 - Holds the custom enchantment Beheading postAttack code. I put this here to make it easier to test as you just need to do `/reload` to load server scripts but startup scripts requires a restart
 
 I don't think my method for droping mob heads will work in a public server but I play on a private one where everybody is OP and cheats are enabled. It uses the Minecraft `/summon` command and has the user of the sword with the enchantment call that command.
+
+----
+
+#### crushing/ores.js
+- Override the ore crushing to include a 30% chance to get a bonus crushed ore
+
+----
+
+#### mixer/fluids.js
+- Add recipe to mix lava and water to make obsidian
+
+----
+
+#### shapeless/unbreakable.js
+- Add shapeless recipes to swords, tools and armor pieces where if they are combined with a netherstar they get the unbreakable NBT tag
+- This will remove existing enchantements ( game limitation )
+- I will probably make it so it can only be done to Netherite+ to reduce the number of custom recipes added
 
 ----
 
