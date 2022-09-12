@@ -1,6 +1,6 @@
 # NGTCKubeJS
 ## Description
- Nothing good to create (NGTC) is what I'm calling a private Minecraft modpack themed around the [Create](https://www.curseforge.com/minecraft/mc-mods/create) mod. This repo exists to show what I leared about [KubeJS](https://www.curseforge.com/minecraft/mc-mods/kubejs)
+ Nothing good to create (NGTC) is what I'm calling a private Minecraft modpack themed around the [Create](https://www.curseforge.com/minecraft/mc-mods/create) mod. This repo exists to show what I learned about [KubeJS](https://www.curseforge.com/minecraft/mc-mods/kubejs)
 
 ## What is in here?
 Mostly custom recipes using [Create](https://www.curseforge.com/minecraft/mc-mods/create). I've broken down what each contains and what it does. Most of this can be found on the [KubeJS Documentation](https://mods.latvian.dev/books/kubejs) but I had to figure out adding a custom enchantment from their Discord and from trial and error
