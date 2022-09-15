@@ -1,18 +1,18 @@
 onEvent('recipes', event => {
     const idPrefix = 'nothinggood:crushing/recycle/'
 
-    // Function to return an array the size of the number of the itemstack each with a defined chance of success
-    const numberReturned = ( itemstack, guaranteed ,bonus, chance ) => {
+    // Function to returns an output array with a guaranteed item return and them a chance for the bonue. Default chance is 15%
+    const numberReturned = ( itemstack, guaranteed, bonus, chance ) => {
         let returnedOutput = []
 
-        // If chance is undefined, default to 25%
-        if( chance == null ) chance = .25
+        // If chance is undefined, default to 15%
+        if( chance == null ) chance = .15
 
         returnedOutput.push( Item.of( itemstack, guaranteed ) )
-
-        for( let j = 0; j < bonus; j++ ) {
-            returnedOutput.push( Item.of( itemstack ).withChance(chance) )
+        if( bonus > 0 ) {
+            returnedOutput.push( Item.of( itemstack, bonus ).withChance( chance ) )
         }
+
         return returnedOutput
     }
 
@@ -72,6 +72,12 @@ onEvent('recipes', event => {
             input: 'minecraft:diamond_helmet',
             id: `${idPrefix}diamond_helmet`
         },
+        {
+            outputs: numberReturned( 'ars_nouveau:magebloom_fiber', 3, 2, .25 ),
+            input: 'ars_nouveau:novice_hood',
+            id: `${idPrefix}novice_hood`
+        },
+
 
         // Leggings
         {
@@ -98,6 +104,11 @@ onEvent('recipes', event => {
             outputs: numberReturned( 'minecraft:diamond', 4, 3, .1 ),
             input: 'minecraft:diamond_leggings',
             id: `${idPrefix}diamond_leggings`
+        },
+        {
+            outputs: numberReturned( 'ars_nouveau:magebloom_fiber', 5, 2, .25 ),
+            input: 'ars_nouveau:novice_leggings',
+            id: `${idPrefix}novice_leggings`
         },
 
         // Chestplate
@@ -126,6 +137,11 @@ onEvent('recipes', event => {
             input: 'minecraft:diamond_chestplate',
             id: `${idPrefix}diamond_chestplate`
         },
+        {
+            outputs: numberReturned( 'ars_nouveau:magebloom_fiber', 6, 2, .25 ),
+            input: 'ars_nouveau:novice_robes',
+            id: `${idPrefix}novice_robes`
+        },
 
         // Boots
         {
@@ -153,36 +169,41 @@ onEvent('recipes', event => {
             input: 'minecraft:diamond_boots',
             id: `${idPrefix}diamond_boots`
         },
+        {
+            outputs: numberReturned( 'ars_nouveau:magebloom_fiber', 2, 2, .25 ),
+            input: 'ars_nouveau:novice_boots',
+            id: `${idPrefix}novice_boots`
+        },
 
         // Swords
         {
-            outputs: Item.of( 'minecraft:stick', 2 ),
-            input: Item.of( 'minecraft:wooden_sword' ),
+            outputs: numberReturned( 'minecraft:stick', 1, 1 ),
+            input: 'minecraft:wooden_sword',
             id: `${idPrefix}wooden_sword`
         },
         {
-            outputs: Item.of( 'minecraft:cobblestone', 2 ),
-            input: Item.of( 'minecraft:stone_sword' ),
+            outputs: numberReturned( 'minecraft:cobblestone', 1, 1 ),
+            input: 'minecraft:stone_sword',
             id: `${idPrefix}stone_sword`
         },
         {
-            outputs: Item.of( 'minecraft:iron_ingot', 2 ),
-            input: Item.of( 'minecraft:iron_sword' ),
+            outputs: numberReturned( 'minecraft:iron_ingot', 1, 1 ),
+            input: 'minecraft:iron_sword',
             id: `${idPrefix}iron_sword`
         },
         {
-            outputs: Item.of( 'minecraft:gold_ingot', 2 ),
-            input: Item.of( 'minecraft:golden_sword' ),
+            outputs: numberReturned( 'minecraft:gold_ingot', 1, 1 ),
+            input: 'minecraft:golden_sword',
             id: `${idPrefix}gold_sword`
         },
         {
-            outputs: Item.of( 'minecraft:diamond', 2 ),
-            input: Item.of( 'minecraft:diamond_sword' ),
+            outputs: numberReturned( 'minecraft:diamond', 1, 1, .1 ),
+            input: 'minecraft:diamond_sword',
             id: `${idPrefix}diamond_sword`
         },
         {
-            outputs: [ Item.of( 'minecraft:netherite_ingot', 1 ), Item.of( 'minecraft:diamond', 2 ) ],
-            input: Item.of( 'minecraft:netherite_sword' ),
+            outputs: Item.of( 'minecraft:netherite_ingot', 1 ),
+            input: 'minecraft:netherite_sword',
             id: `${idPrefix}netherite_sword`
         },
 
@@ -190,160 +211,160 @@ onEvent('recipes', event => {
         // Pickaxes
         {
             outputs: Item.of( 'minecraft:stick', 3 ),
-            input: Item.of( 'minecraft:wooden_pickaxe' ),
+            input: 'minecraft:wooden_pickaxe',
             id: `${idPrefix}wooden_pickaxe`
         },
         {
             outputs: Item.of( 'minecraft:cobblestone', 3 ),
-            input: Item.of( 'minecraft:stone_pickaxe' ),
+            input: 'minecraft:stone_pickaxe',
             id: `${idPrefix}stone_pickaxe`
         },
         {
-            outputs: Item.of( 'minecraft:iron_ingot', 3 ),
-            input: Item.of( 'minecraft:iron_pickaxe' ),
+            outputs: numberReturned( 'minecraft:iron_ingot', 2, 1 ),
+            input: 'minecraft:iron_pickaxe',
             id: `${idPrefix}iron_pickaxe`
         },
         {
-            outputs: Item.of( 'minecraft:gold_ingot', 3 ),
-            input: Item.of( 'minecraft:golden_pickaxe' ),
+            outputs: numberReturned( 'minecraft:gold_ingot', 2, 1 ),
+            input: 'minecraft:golden_pickaxe',
             id: `${idPrefix}gold_pickaxe`
         },
         {
-            outputs: Item.of( 'minecraft:diamond', 3 ),
-            input: Item.of( 'minecraft:diamond_pickaxe' ),
+            outputs: numberReturned( 'minecraft:diamond', 2, 1 ),
+            input: 'minecraft:diamond_pickaxe',
             id: `${idPrefix}diamond_pickaxe`
         },
         {
-            outputs: [ Item.of( 'minecraft:netherite_ingot', 1 ), Item.of( 'minecraft:diamond', 3 ) ],
-            input: Item.of( 'minecraft:netherite_pickaxe' ),
+            outputs: Item.of( 'minecraft:netherite_ingot', 1 ),
+            input: 'minecraft:netherite_pickaxe',
             id: `${idPrefix}netherite_pickaxe`
         },
 
         // Axes
         {
             outputs: Item.of( 'minecraft:stick', 3 ),
-            input: Item.of( 'minecraft:wooden_axe' ),
+            input: 'minecraft:wooden_axe',
             id: `${idPrefix}wooden_axe`
         },
         {
             outputs: Item.of( 'minecraft:cobblestone', 3 ),
-            input: Item.of( 'minecraft:stone_axe' ),
+            input: 'minecraft:stone_axe',
             id: `${idPrefix}stone_axe`
         },
         {
-            outputs: Item.of( 'minecraft:iron_ingot', 3 ),
-            input: Item.of( 'minecraft:iron_axe' ),
+            outputs: numberReturned( 'minecraft:iron_ingot', 2, 1 ),
+            input: 'minecraft:iron_axe',
             id: `${idPrefix}iron_axe`
         },
         {
-            outputs: Item.of( 'minecraft:gold_ingot', 3 ),
-            input: Item.of( 'minecraft:golden_axe' ),
+            outputs: numberReturned( 'minecraft:gold_ingot', 2, 1 ),
+            input: 'minecraft:golden_axe',
             id: `${idPrefix}gold_axe`
         },
         {
-            outputs: Item.of( 'minecraft:diamond', 3 ),
-            input: Item.of( 'minecraft:diamond_axe' ),
+            outputs: numberReturned( 'minecraft:diamond', 2, 1, .1 ),
+            input: 'minecraft:diamond_axe',
             id: `${idPrefix}diamond_axe`
         },
         {
-            outputs: [ Item.of( 'minecraft:netherite_ingot', 1 ), Item.of( 'minecraft:diamond', 3 ) ],
-            input: Item.of( 'minecraft:netherite_axe' ),
+            outputs: Item.of( 'minecraft:netherite_ingot', 1 ),
+            input: 'minecraft:netherite_axe',
             id: `${idPrefix}netherite_axe`
         },
 
         // Shovels
         {
-            outputs: Item.of( 'minecraft:stick', 1 ),
-            input: Item.of( 'minecraft:wooden_shovel' ),
+            outputs: Item.of( 'minecraft:stick', 2 ),
+            input: 'minecraft:wooden_shovel',
             id: `${idPrefix}wooden_shovel`
         },
         {
             outputs: Item.of( 'minecraft:cobblestone', 1 ),
-            input: Item.of( 'minecraft:stone_shovel' ),
+            input: 'minecraft:stone_shovel',
             id: `${idPrefix}stone_shovel`
         },
         {
             outputs: Item.of( 'minecraft:iron_ingot', 1 ),
-            input: Item.of( 'minecraft:iron_shovel' ),
+            input: 'minecraft:iron_shovel',
             id: `${idPrefix}iron_shovel`
         },
         {
             outputs: Item.of( 'minecraft:gold_ingot', 1 ),
-            input: Item.of( 'minecraft:golden_shovel' ),
+            input: 'minecraft:golden_shovel',
             id: `${idPrefix}gold_shovel`
         },
         {
             outputs: Item.of( 'minecraft:diamond', 1 ),
-            input: Item.of( 'minecraft:diamond_shovel' ),
+            input: 'minecraft:diamond_shovel',
             id: `${idPrefix}diamond_shovel`
         },
         {
-            outputs: [ Item.of( 'minecraft:netherite_ingot', 1 ), Item.of( 'minecraft:diamond', 1 ) ],
-            input: Item.of( 'minecraft:netherite_shovel' ),
+            outputs: Item.of( 'minecraft:netherite_ingot', 1 ),
+            input: 'minecraft:netherite_shovel',
             id: `${idPrefix}netherite_shovel`
         },
 
         // Hoes
         {
             outputs: Item.of( 'minecraft:stick', 2 ),
-            input: Item.of( 'minecraft:wooden_hoe' ),
+            input: 'minecraft:wooden_hoe',
             id: `${idPrefix}wooden_hoe`
         },
         {
             outputs: Item.of( 'minecraft:cobblestone', 2 ),
-            input: Item.of( 'minecraft:stone_sword' ),
+            input: 'minecraft:stone_sword',
             id: `${idPrefix}stone_hoe`
         },
         {
-            outputs: Item.of( 'minecraft:iron_ingot', 2 ),
-            input: Item.of( 'minecraft:iron_hoe' ),
+            outputs: numberReturned( 'minecraft:iron_ingot', 1, 1 ),
+            input: 'minecraft:iron_hoe',
             id: `${idPrefix}iron_hoe`
         },
         {
-            outputs: Item.of( 'minecraft:gold_ingot', 2 ),
-            input: Item.of( 'minecraft:golden_hoe' ),
+            outputs: numberReturned( 'minecraft:gold_ingot', 1, 1 ),
+            input: 'minecraft:golden_hoe',
             id: `${idPrefix}gold_hoe`
         },
         {
-            outputs: Item.of( 'minecraft:diamond', 2 ),
-            input: Item.of( 'minecraft:diamond_hoe' ),
+            outputs: numberReturned( 'minecraft:diamond', 1, 1, .1 ),
+            input: 'minecraft:diamond_hoe',
             id: `${idPrefix}diamond_hoe`
         },
         {
-            outputs: [ Item.of( 'minecraft:netherite_ingot', 1 ), Item.of( 'minecraft:diamond', 2 ) ],
-            input: Item.of( 'minecraft:netherite_hoe' ),
+            outputs: Item.of( 'minecraft:netherite_ingot', 1 ),
+            input: 'minecraft:netherite_hoe',
             id: `${idPrefix}netherite_hoe`
         },
 
         // Backpacks
         {
             outputs: backpackRecycle('leather'),
-            input: Item.of( 'sophisticatedbackpacks:backpack' ).ignoreNBT(),
+            input: 'sophisticatedbackpacks:backpack',
             id: `${idPrefix}backpack`
         },
         {
             outputs: backpackRecycle('iron'),
-            input: Item.of( 'sophisticatedbackpacks:iron_backpack' ).ignoreNBT(),
+            input: 'sophisticatedbackpacks:iron_backpack',
             id: `${idPrefix}iron_backpack`
         },
         {
             outputs: backpackRecycle('gold'),
-            input: Item.of( 'sophisticatedbackpacks:gold_backpack' ).ignoreNBT(),
+            input: 'sophisticatedbackpacks:gold_backpack',
             id: `${idPrefix}gold_backpack`
         },
         {
             outputs: backpackRecycle('diamond'),
-            input: Item.of( 'sophisticatedbackpacks:diamond_backpack' ).ignoreNBT(),
+            input: 'sophisticatedbackpacks:diamond_backpack',
             id: `${idPrefix}diamond_backpack`
         },
         {
             outputs: backpackRecycle('netherite'),
-            input: Item.of( 'sophisticatedbackpacks:netherite_backpack' ).ignoreNBT(),
+            input: 'sophisticatedbackpacks:netherite_backpack',
             id: `${idPrefix}netherite_backpack`
         }
     ]
     recycleRecipes.forEach( ( recipe ) => {
-        event.recipes.create.crushing( recipe.outputs, recipe.input ).id( recipe.id )
+        event.recipes.create.crushing( recipe.outputs, Item.of( recipe.input ).ignoreNBT() ).id( recipe.id ).processingTime(40)
     } )
 
 } )

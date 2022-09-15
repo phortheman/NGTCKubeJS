@@ -17,7 +17,6 @@ onEvent('recipes', event => {
                 returnedOutput.push( 'minecraft:diamond')
                 break
             case 'netherite':
-                // Netherite will return the ingot plus apply the diamond case
                 returnedOutput.push( 'minecraft:netherite_ingot' )
                 break
         }
@@ -56,7 +55,7 @@ onEvent('recipes', event => {
 
 
     recycleRecipes.forEach( ( recipe ) => {
-        event.recipes.create.milling( recipe.outputs, recipe.input ).id( recipe.id )
+        event.recipes.create.milling( recipe.outputs, recipe.input ).id( recipe.id ).processingTime(80)
     } )
 
 } )
