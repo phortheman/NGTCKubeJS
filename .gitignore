@@ -2,3 +2,4 @@ exported/*
 probe/*
 assets/kubejs/lang/schema.json
 jsconfig.json
+README.txt
