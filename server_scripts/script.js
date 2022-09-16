@@ -9,12 +9,14 @@ console.info('Hello, World! (You will see this line every time server resources 
 
 global.beheadingPostAttack = (attacker, target, level) =>
 {
-	if( target.getHealth() <= 0 ) { // Check if target is dead ( isLiving always returns true )
-		head = null
-		mob = target.getType()
+	// Post attack declared in server_scripts for easy testing
+	if (!target.isAlive()) 
+	{
+		let head = null
+		const mob = target.getType()
 
 		// See which head needs to drop
-		switch ( mob ){
+		switch (mob) {
 			case 'minecraft:zombie':
 				head = 'minecraft:zombie_head'
 				break
@@ -30,13 +32,15 @@ global.beheadingPostAttack = (attacker, target, level) =>
 		}
 
 		// "Roll" a 10 sided die
-		roll = Math.floor( Math.random() * 10 ) + 1;
+		const roll = Math.floor(Math.random() * 10) + 1;
 
 		// If the die roll is less than the enchantment level, drop a head if available
-		if( level >= roll && head != null ) {
+		if (level >= roll && head != null) {
 			attacker.runCommandSilent(`summon minecraft:item ${target.getX()} ${target.getY()} ${target.getZ()} { Item: { id: "${head}", Count: 1 } }`)
 		}
+
 	}
+
 }
 
 onEvent('recipes', event => {
