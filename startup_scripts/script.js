@@ -33,7 +33,39 @@ onEvent( 'enchantment.registry', event => {
 	beheadingEnchantment.postAttack((entity, target, level) =>
     {
       // Post attack declared in server_scripts for easy testing
-      global.beheadingPostAttack(entity, target, level)
+    //   global.beheadingPostAttack(entity, target, level)
+	
+	// Post attack declared in server_scripts for easy testing
+	if (!target.isAlive()) 
+	{
+		let head = null
+		const mob = target.getType()
+
+		// See which head needs to drop
+		switch (mob) {
+			case 'minecraft:zombie':
+				head = 'minecraft:zombie_head'
+				break
+			case 'minecraft:wither_skeleton':
+				head = 'minecraft:wither_skeleton_skull'
+				break
+			case 'minecraft:skeleton':
+				head = 'minecraft:skeleton_skull'
+				break
+			case 'minecraft:creeper':
+				head = 'minecraft:creeper_head'
+				break
+		}
+
+		// "Roll" a 10 sided die
+		const roll = Math.floor(Math.random() * 10) + 1;
+
+		// If the die roll is less than the enchantment level, drop a head if available
+		if (level >= roll && head != null) {
+			attacker.runCommandSilent(`summon minecraft:item ${target.getX()} ${target.getY()} ${target.getZ()} { Item: { id: "${head}", Count: 1 } }`)
+		}
+
+	}
     })
 
 })
