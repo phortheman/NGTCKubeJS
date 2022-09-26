@@ -77,6 +77,11 @@ onEvent('recipes', event => {
             input: 'ars_nouveau:novice_hood',
             id: `${idPrefix}novice_hood`
         },
+        {
+            outputs: numberReturned( 'ars_nouveau:blaze_fiber', 3, 2, .25 ),
+            input: 'ars_nouveau:apprentice_hood',
+            id: `${idPrefix}apprentice_hood`
+        },
 
 
         // Leggings
@@ -110,6 +115,11 @@ onEvent('recipes', event => {
             input: 'ars_nouveau:novice_leggings',
             id: `${idPrefix}novice_leggings`
         },
+        {
+            outputs: numberReturned( 'ars_nouveau:blaze_fiber', 5, 2, .25 ),
+            input: 'ars_nouveau:apprentice_leggings',
+            id: `${idPrefix}apprentice_leggings`
+        },
 
         // Chestplate
         {
@@ -141,6 +151,11 @@ onEvent('recipes', event => {
             outputs: numberReturned( 'ars_nouveau:magebloom_fiber', 6, 2, .25 ),
             input: 'ars_nouveau:novice_robes',
             id: `${idPrefix}novice_robes`
+        },
+        {
+            outputs: numberReturned( 'ars_nouveau:blaze_fiber', 6, 2, .25 ),
+            input: 'ars_nouveau:apprentice_robes',
+            id: `${idPrefix}apprentice_robes`
         },
 
         // Boots
@@ -174,7 +189,12 @@ onEvent('recipes', event => {
             input: 'ars_nouveau:novice_boots',
             id: `${idPrefix}novice_boots`
         },
-
+        {
+            outputs: numberReturned( 'ars_nouveau:blaze_fiber', 2, 2, .25 ),
+            input: 'ars_nouveau:apprentice_boots',
+            id: `${idPrefix}apprentice_boots`
+        },
+        
         // Swords
         {
             outputs: numberReturned( 'minecraft:stick', 1, 1 ),
@@ -361,10 +381,22 @@ onEvent('recipes', event => {
             outputs: backpackRecycle('netherite'),
             input: 'sophisticatedbackpacks:netherite_backpack',
             id: `${idPrefix}netherite_backpack`
-        }
+        },
+
+        // Misc
+        {
+            outputs: numberReturned( 'minecraft:iron_ingot', 1, 1, .25 ),
+            input: 'minecraft:iron_door',
+            id: `${idPrefix}iron_door`
+        },
+        {
+            outputs: numberReturned( 'minecraft:string', 1, 2, .25 ),
+            input: 'minecraft:bow',
+            id: `${idPrefix}bow`
+        },
     ]
     recycleRecipes.forEach( ( recipe ) => {
-        event.recipes.create.crushing( recipe.outputs, Item.of( recipe.input ).ignoreNBT() ).id( recipe.id ).processingTime(40)
+        event.recipes.create.crushing( recipe.outputs, Item.of( recipe.input ).ignoreNBT() ).id( recipe.id ).processingTime(80)
     } )
 
 } )
